@@ -4,6 +4,8 @@ import './globals.css'
 import { generateBaseMetadata, websiteJsonLd } from '@/lib/seo'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import { getAllPostsMeta } from '@/lib/mdx'
 
 const inter = Inter({
   variable: '--font-body',
@@ -20,28 +22,47 @@ const poppins = Poppins({
 
 export const metadata: Metadata = generateBaseMetadata()
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const posts = getAllPostsMeta()
+  const searchData = posts.map(p => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    readingTime: p.readingTime,
+    difficulty: p.difficulty,
+  }))
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
         />
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            const t = localStorage.getItem('theme');
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.documentElement.classList.add('dark');
+            }
+          } catch(e) {}
+        `}} />
       </head>
       <body className="min-h-screen flex flex-col">
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <Header searchData={searchData} />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getAllPostsMeta } from '@/lib/mdx'
-import { formatDate, SITE_URL, SITE_NAME } from '@/lib/utils'
+import { CATEGORIES, SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import ArticleCard from '@/components/ArticleCard'
 
 export const revalidate = 3600
 
@@ -16,46 +17,41 @@ export default function BlogPage() {
   const posts = getAllPostsMeta()
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'All Guides' }]} />
 
-      <h1 className="text-3xl font-bold font-[family-name:var(--font-heading)] text-brand-dark mb-2">
-        All Guides
-      </h1>
-      <p className="text-gray-600 mb-8">
-        {posts.length} articles to help you with technology. Start with any guide that interests you.
-      </p>
+      <div className="mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-3">
+          All Guides
+        </h1>
+        <p className="text-[var(--text-secondary)]">
+          {posts.length} articles to help you with technology. Start with any guide that interests you.
+        </p>
+      </div>
 
-      <div className="space-y-4 no-underline">
-        {posts.map((post) => (
+      {/* Category filter pills */}
+      <div className="flex flex-wrap gap-2 mb-8 no-underline">
+        <Link
+          href="/blog"
+          className="px-4 py-2 rounded-full text-sm font-medium bg-brand-blue text-white no-underline"
+        >
+          All
+        </Link>
+        {CATEGORIES.map((cat) => (
           <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="flex gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-brand-blue hover:shadow-sm transition-all"
+            key={cat.slug}
+            href={`/category/${cat.slug}`}
+            className="px-4 py-2 rounded-full text-sm font-medium border border-[var(--border-color)] text-[var(--text-secondary)] hover:border-brand-blue hover:text-brand-blue transition-all no-underline"
           >
-            {post.thumbnail && (
-              <img
-                src={post.thumbnail}
-                alt={post.thumbnailAlt ?? post.title}
-                className="w-24 h-24 sm:w-32 sm:h-24 object-cover rounded-md flex-shrink-0"
-                loading="lazy"
-              />
-            )}
-            <div className="min-w-0">
-              <h2 className="font-semibold text-brand-dark leading-snug mb-1">
-                {post.title}
-              </h2>
-              <p className="text-gray-600 text-sm line-clamp-2">{post.excerpt}</p>
-              <p className="text-gray-400 text-xs mt-1">
-                {formatDate(post.date)} · {post.readingTime}
-                {post.difficulty && (
-                  <span className="ml-2 inline-block px-1.5 py-0.5 bg-blue-50 text-brand-blue rounded text-xs font-medium">
-                    {post.difficulty}
-                  </span>
-                )}
-              </p>
-            </div>
+            {cat.label}
           </Link>
+        ))}
+      </div>
+
+      {/* Articles */}
+      <div className="space-y-5">
+        {posts.map((post, i) => (
+          <ArticleCard key={post.slug} post={post} variant="list" index={i} />
         ))}
       </div>
     </div>

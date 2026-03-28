@@ -3,10 +3,20 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPostsByCategory } from '@/lib/mdx'
 import { generateCategoryMetadata } from '@/lib/seo'
-import { CATEGORIES, formatDate, getCategoryInfo } from '@/lib/utils'
+import { CATEGORIES, getCategoryInfo } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import ArticleCard from '@/components/ArticleCard'
+import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight } from 'lucide-react'
 
 export const revalidate = 3600
+
+const CATEGORY_ICONS: Record<string, typeof BookOpen> = {
+  'how-to-guides': BookOpen,
+  'product-reviews': Star,
+  'safety-security': Shield,
+  'explainers': Lightbulb,
+  'apps-services': Smartphone,
+}
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ slug: c.slug }))
@@ -29,41 +39,76 @@ export default async function CategoryPage(
   if (!cat) notFound()
 
   const posts = getPostsByCategory(slug)
+  const Icon = CATEGORY_ICONS[slug] ?? BookOpen
+  const otherCategories = CATEGORIES.filter((c) => c.slug !== slug)
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: cat.label }]} />
 
-      <h1 className="text-3xl font-bold font-[family-name:var(--font-heading)] text-brand-dark mb-2">
-        {cat.label}
-      </h1>
-      <p className="text-gray-600 mb-8">{cat.description}</p>
+      {/* Category header */}
+      <div className="flex items-start gap-4 mb-8">
+        <div className={`w-14 h-14 rounded-2xl ${cat.color} text-white flex items-center justify-center shrink-0`}>
+          <Icon className="w-7 h-7" />
+        </div>
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-1">
+            {cat.label}
+          </h1>
+          <p className="text-[var(--text-secondary)]">{cat.description}</p>
+          <p className="text-sm text-[var(--text-muted)] mt-1">
+            {posts.length} {posts.length === 1 ? 'guide' : 'guides'} available
+          </p>
+        </div>
+      </div>
 
+      {/* Articles */}
       {posts.length === 0 ? (
-        <p className="text-gray-500 text-lg">
-          New guides coming soon for this category. Check back shortly!
-        </p>
+        <div className="card p-12 text-center">
+          <p className="text-[var(--text-secondary)] text-lg mb-4">
+            New guides coming soon for this category!
+          </p>
+          <Link
+            href="/blog"
+            className="text-brand-blue font-medium hover:underline"
+          >
+            Browse all guides instead
+          </Link>
+        </div>
       ) : (
-        <div className="space-y-4 no-underline">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="flex gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-brand-blue hover:shadow-sm transition-all"
-            >
-              <div className="min-w-0">
-                <h2 className="font-semibold text-brand-dark leading-snug mb-1">
-                  {post.title}
-                </h2>
-                <p className="text-gray-600 text-sm line-clamp-2">{post.excerpt}</p>
-                <p className="text-gray-400 text-xs mt-1">
-                  {formatDate(post.date)} · {post.readingTime}
-                </p>
-              </div>
-            </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {posts.map((post, i) => (
+            <ArticleCard key={post.slug} post={post} variant="grid" index={i} />
           ))}
         </div>
       )}
+
+      {/* Browse other categories */}
+      <section className="mt-8 pt-8 border-t border-[var(--border-color)]">
+        <h2 className="text-xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-4">
+          Browse Other Categories
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 no-underline">
+          {otherCategories.map((c) => {
+            const OtherIcon = CATEGORY_ICONS[c.slug] ?? BookOpen
+            return (
+              <Link
+                key={c.slug}
+                href={`/category/${c.slug}`}
+                className="group card p-4 flex items-center gap-3 hover:border-brand-blue/30 no-underline transition-all"
+              >
+                <div className={`w-9 h-9 rounded-lg ${c.color} text-white flex items-center justify-center shrink-0`}>
+                  <OtherIcon className="w-4 h-4" />
+                </div>
+                <span className="font-medium text-[var(--text-primary)] group-hover:text-brand-blue transition-colors flex-1">
+                  {c.label}
+                </span>
+                <ChevronRight className="w-4 h-4 text-[var(--text-muted)]" />
+              </Link>
+            )
+          })}
+        </div>
+      </section>
     </div>
   )
 }

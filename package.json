@@ -11,6 +11,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.7.0",
@@ -20,7 +21,8 @@
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

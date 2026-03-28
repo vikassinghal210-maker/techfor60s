@@ -177,3 +177,166 @@ export function getFeaturedPost(): PostMeta | undefined {
   const all = getAllPostsMeta()
   return all.find((p) => p.featured) ?? all[0]
 }
+
+function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
+export function markdownToHtml(md: string): string {
+  const lines = md.split('\n')
+  const result: string[] = []
+  let inCodeBlock = false
+  let codeContent: string[] = []
+  let inList = false
+  let listType: 'ul' | 'ol' = 'ul'
+  let inTable = false
+  let tableRows: string[] = []
+
+  function closeList() {
+    if (inList) {
+      result.push(`</${listType}>`)
+      inList = false
+    }
+  }
+
+  function closeTable() {
+    if (inTable) {
+      result.push('</tbody></table></div>')
+      inTable = false
+      tableRows = []
+    }
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+
+    // Code blocks
+    if (line.startsWith('```')) {
+      if (inCodeBlock) {
+        result.push(`<pre><code>${codeContent.join('\n').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`)
+        codeContent = []
+        inCodeBlock = false
+      } else {
+        closeList()
+        closeTable()
+        inCodeBlock = true
+      }
+      continue
+    }
+
+    if (inCodeBlock) {
+      codeContent.push(line)
+      continue
+    }
+
+    // Table rows
+    if (line.includes('|') && line.trim().startsWith('|')) {
+      closeList()
+      const cells = line.split('|').filter(c => c.trim() !== '').map(c => c.trim())
+
+      // Skip separator row (|---|---|)
+      if (cells.every(c => /^[-:]+$/.test(c))) continue
+
+      if (!inTable) {
+        inTable = true
+        result.push('<div class="overflow-x-auto"><table>')
+        result.push('<thead><tr>')
+        cells.forEach(c => result.push(`<th>${inlineFormat(c)}</th>`))
+        result.push('</tr></thead><tbody>')
+      } else {
+        result.push('<tr>')
+        cells.forEach(c => result.push(`<td>${inlineFormat(c)}</td>`))
+        result.push('</tr>')
+      }
+      continue
+    } else {
+      closeTable()
+    }
+
+    // Empty line
+    if (line.trim() === '') {
+      closeList()
+      continue
+    }
+
+    // Headings
+    if (line.startsWith('### ')) {
+      closeList()
+      const text = line.slice(4).trim()
+      result.push(`<h3 id="${slugifyHeading(text)}">${inlineFormat(text)}</h3>`)
+      continue
+    }
+    if (line.startsWith('## ')) {
+      closeList()
+      const text = line.slice(3).trim()
+      result.push(`<h2 id="${slugifyHeading(text)}">${inlineFormat(text)}</h2>`)
+      continue
+    }
+
+    // Horizontal rule
+    if (/^---+$/.test(line.trim())) {
+      closeList()
+      result.push('<hr />')
+      continue
+    }
+
+    // Unordered list
+    if (/^[-*] /.test(line.trim())) {
+      if (!inList || listType !== 'ul') {
+        closeList()
+        result.push('<ul>')
+        inList = true
+        listType = 'ul'
+      }
+      result.push(`<li>${inlineFormat(line.trim().slice(2))}</li>`)
+      continue
+    }
+
+    // Ordered list
+    if (/^\d+\. /.test(line.trim())) {
+      if (!inList || listType !== 'ol') {
+        closeList()
+        result.push('<ol>')
+        inList = true
+        listType = 'ol'
+      }
+      result.push(`<li>${inlineFormat(line.trim().replace(/^\d+\.\s*/, ''))}</li>`)
+      continue
+    }
+
+    // Blockquote
+    if (line.startsWith('>')) {
+      closeList()
+      result.push(`<blockquote><p>${inlineFormat(line.slice(1).trim())}</p></blockquote>`)
+      continue
+    }
+
+    // Paragraph
+    closeList()
+    result.push(`<p>${inlineFormat(line)}</p>`)
+  }
+
+  closeList()
+  closeTable()
+
+  return result.join('\n')
+}
+
+function inlineFormat(text: string): string {
+  return text
+    // Images
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" class="rounded-xl" />')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    // Bold
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+}
