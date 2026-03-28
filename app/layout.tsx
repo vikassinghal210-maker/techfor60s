@@ -5,6 +5,7 @@ import { generateBaseMetadata, websiteJsonLd } from '@/lib/seo'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import { getAllPostsMeta } from '@/lib/mdx'
 
 const inter = Inter({
@@ -53,6 +54,7 @@ export default async function RootLayout({
         `}} />
       </head>
       <body className="min-h-screen flex flex-col">
+        <GoogleAnalytics />
         <ThemeProvider>
           <a href="#main-content" className="skip-to-content">
             Skip to main content

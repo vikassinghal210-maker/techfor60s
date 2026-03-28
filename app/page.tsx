@@ -20,7 +20,7 @@ const CATEGORY_ICONS: Record<string, typeof BookOpen> = {
 export default function HomePage() {
   const posts = getAllPostsMeta()
   const featured = getFeaturedPost()
-  const recent = posts.slice(0, 6)
+  const recent = posts.slice(0, 9)
 
   return (
     <>
