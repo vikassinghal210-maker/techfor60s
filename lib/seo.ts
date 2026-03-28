@@ -48,6 +48,9 @@ export function generateBaseMetadata(): Metadata {
       languages: {
         'en-US': SITE_URL,
       },
+      types: {
+        'application/rss+xml': `${SITE_URL}/feed.xml`,
+      },
     },
     other: {
       'theme-color': '#1e40af',
@@ -57,9 +60,10 @@ export function generateBaseMetadata(): Metadata {
 
 export function generateArticleMetadata(post: PostMeta, slug: string): Metadata {
   const url = `${SITE_URL}/blog/${slug}`
-  const imageUrl = post.thumbnail.startsWith('http')
-    ? post.thumbnail
-    : `${SITE_URL}${post.thumbnail}`
+  const ogApiUrl = `${SITE_URL}/api/og?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category ?? '')}`
+  const imageUrl = post.thumbnail
+    ? (post.thumbnail.startsWith('http') ? post.thumbnail : `${SITE_URL}${post.thumbnail}`)
+    : ogApiUrl
 
   return {
     title: post.title,
