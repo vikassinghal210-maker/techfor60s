@@ -21,6 +21,9 @@ export function generateBaseMetadata(): Metadata {
       'online safety seniors',
       'tech made simple',
     ],
+    verification: {
+      google: '0atSyCoQWeihdlWAhwqYgGJ1QapfkF5Yv61Go888g3E',
+    },
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
