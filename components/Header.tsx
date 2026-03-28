@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: '/category/how-to-guides', label: 'How-To' },
   { href: '/category/product-reviews', label: 'Reviews' },
   { href: '/category/safety-security', label: 'Safety' },
+  { href: '/tools/device-quiz', label: 'Tools' },
   { href: '/about', label: 'About' },
 ]
 
