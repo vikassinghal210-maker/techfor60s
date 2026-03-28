@@ -5,7 +5,7 @@ import { CATEGORIES, formatDate } from '@/lib/utils'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import ArticleCard from '@/components/ArticleCard'
-import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight } from 'lucide-react'
+import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin } from 'lucide-react'
 
 export const revalidate = 3600
 
@@ -161,6 +161,86 @@ export default function HomePage() {
               </Link>
             )
           })}
+        </div>
+      </section>
+
+      {/* ─── Free Tools ─── */}
+      <section className="bg-[var(--bg-tertiary)] py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-3">
+              Free Interactive Tools
+            </h2>
+            <p className="text-[var(--text-secondary)] max-w-lg mx-auto">
+              Quizzes, cheat sheets, and local resources to help you get the most from technology.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 no-underline">
+            {[
+              {
+                href: '/tools/device-quiz',
+                icon: Smartphone,
+                color: 'bg-blue-100 text-brand-blue dark:bg-blue-900/30',
+                title: 'Which Device Is Right for You?',
+                desc: 'Take our 5-question quiz to find the perfect phone or tablet.',
+              },
+              {
+                href: '/tools/iphone-cheat-sheet',
+                icon: FileText,
+                color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30',
+                title: 'iPhone Cheat Sheet',
+                desc: 'Print a one-page reference for the most common iPhone tasks.',
+              },
+              {
+                href: '/tools/android-cheat-sheet',
+                icon: FileText,
+                color: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30',
+                title: 'Android Cheat Sheet',
+                desc: 'Print a one-page reference for Android phone basics.',
+              },
+              {
+                href: '/tools/internet-by-state',
+                icon: Wifi,
+                color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30',
+                title: 'Internet Plans by State',
+                desc: 'Compare providers and senior discounts in all 50 states.',
+              },
+              {
+                href: '/tools/tech-classes',
+                icon: MapPin,
+                color: 'bg-red-100 text-red-600 dark:bg-red-900/30',
+                title: 'Free Tech Classes Near You',
+                desc: 'Find local computer classes in 30 US and UK cities.',
+              },
+            ].map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className="group card p-5 flex items-start gap-4 hover:border-brand-blue/30 no-underline transition-all"
+              >
+                <div className={`w-11 h-11 rounded-xl ${tool.color} flex items-center justify-center shrink-0`}>
+                  <tool.icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors">
+                      {tool.title}
+                    </h3>
+                    <ChevronRight className="w-4 h-4 text-[var(--text-muted)] group-hover:text-brand-blue transition-all group-hover:translate-x-0.5" />
+                  </div>
+                  <p className="text-[var(--text-secondary)] text-sm line-clamp-2">{tool.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/tools"
+              className="text-brand-blue font-medium text-sm inline-flex items-center gap-1 hover:gap-2 transition-all no-underline"
+            >
+              View all tools <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

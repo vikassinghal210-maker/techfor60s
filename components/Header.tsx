@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Menu, X, Search, ChevronDown, Smartphone, FileText, Wifi, MapPin } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FontSizeToggle from './FontSizeToggle'
 import DarkModeToggle from './DarkModeToggle'
@@ -14,8 +14,15 @@ const NAV_LINKS = [
   { href: '/category/how-to-guides', label: 'How-To' },
   { href: '/category/product-reviews', label: 'Reviews' },
   { href: '/category/safety-security', label: 'Safety' },
-  { href: '/tools/device-quiz', label: 'Tools' },
   { href: '/about', label: 'About' },
+]
+
+const TOOLS_LINKS = [
+  { href: '/tools/device-quiz', label: 'Device Quiz', desc: 'Find the right phone or tablet', icon: Smartphone },
+  { href: '/tools/iphone-cheat-sheet', label: 'iPhone Cheat Sheet', desc: 'Printable quick reference', icon: FileText },
+  { href: '/tools/android-cheat-sheet', label: 'Android Cheat Sheet', desc: 'Printable quick reference', icon: FileText },
+  { href: '/tools/internet-by-state', label: 'Internet by State', desc: 'Compare plans in your state', icon: Wifi },
+  { href: '/tools/tech-classes', label: 'Tech Classes Near You', desc: 'Free classes in 30 cities', icon: MapPin },
 ]
 
 interface HeaderProps {
@@ -26,6 +33,9 @@ export default function Header({ searchData = [] }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [toolsOpen, setToolsOpen] = useState(false)
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false)
+  const toolsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -42,6 +52,17 @@ export default function Header({ searchData = [] }: HeaderProps) {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
+  }, [])
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (toolsRef.current && !toolsRef.current.contains(e.target as Node)) {
+        setToolsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   return (
@@ -75,6 +96,61 @@ export default function Header({ searchData = [] }: HeaderProps) {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Tools dropdown */}
+              <div ref={toolsRef} className="relative">
+                <button
+                  onClick={() => setToolsOpen(!toolsOpen)}
+                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:text-brand-blue hover:bg-brand-blue/5 font-medium transition-all text-sm"
+                >
+                  Tools
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {toolsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-full mt-1 w-72 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-xl overflow-hidden z-50"
+                    >
+                      <div className="p-2">
+                        {TOOLS_LINKS.map((tool) => (
+                          <Link
+                            key={tool.href}
+                            href={tool.href}
+                            onClick={() => setToolsOpen(false)}
+                            className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-blue/5 no-underline transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0 mt-0.5">
+                              <tool.icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-[var(--text-primary)] group-hover:text-brand-blue transition-colors">
+                                {tool.label}
+                              </p>
+                              <p className="text-xs text-[var(--text-muted)] leading-snug">
+                                {tool.desc}
+                              </p>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="border-t border-[var(--border-color)] px-3 py-2">
+                        <Link
+                          href="/tools"
+                          onClick={() => setToolsOpen(false)}
+                          className="text-xs text-brand-blue font-medium no-underline hover:underline"
+                        >
+                          View all tools &rarr;
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </nav>
 
             {/* Desktop actions */}
@@ -135,6 +211,47 @@ export default function Header({ searchData = [] }: HeaderProps) {
                       {link.label}
                     </Link>
                   ))}
+
+                  {/* Mobile Tools accordion */}
+                  <button
+                    onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
+                    className="flex items-center justify-between w-full py-3 text-lg text-[var(--text-secondary)] hover:text-brand-blue font-medium transition-colors"
+                  >
+                    Tools
+                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence>
+                    {mobileToolsOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 pb-2 space-y-1">
+                          {TOOLS_LINKS.map((tool) => (
+                            <Link
+                              key={tool.href}
+                              href={tool.href}
+                              onClick={() => { setMenuOpen(false); setMobileToolsOpen(false) }}
+                              className="flex items-center gap-3 py-2.5 no-underline group"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">
+                                <tool.icon className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <p className="text-[15px] font-medium text-[var(--text-secondary)] group-hover:text-brand-blue transition-colors">
+                                  {tool.label}
+                                </p>
+                                <p className="text-xs text-[var(--text-muted)]">{tool.desc}</p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.nav>
             )}

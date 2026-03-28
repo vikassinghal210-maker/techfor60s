@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: 'var(--footer-bg)' }} className="text-gray-300 mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <p className="text-white text-xl font-bold font-[family-name:var(--font-heading)] mb-3 no-underline">
@@ -29,6 +29,18 @@ export default function Footer() {
               <li><Link href="/category/explainers" className="text-gray-400 hover:text-white transition-colors">Tech Explained</Link></li>
               <li><Link href="/category/safety-security" className="text-gray-400 hover:text-white transition-colors">Safety &amp; Security</Link></li>
               <li><Link href="/category/apps-services" className="text-gray-400 hover:text-white transition-colors">Apps &amp; Services</Link></li>
+            </ul>
+          </div>
+
+          {/* Tools */}
+          <div className="no-underline">
+            <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Free Tools</h3>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link href="/tools/device-quiz" className="text-gray-400 hover:text-white transition-colors">Device Quiz</Link></li>
+              <li><Link href="/tools/iphone-cheat-sheet" className="text-gray-400 hover:text-white transition-colors">iPhone Cheat Sheet</Link></li>
+              <li><Link href="/tools/android-cheat-sheet" className="text-gray-400 hover:text-white transition-colors">Android Cheat Sheet</Link></li>
+              <li><Link href="/tools/internet-by-state" className="text-gray-400 hover:text-white transition-colors">Internet by State</Link></li>
+              <li><Link href="/tools/tech-classes" className="text-gray-400 hover:text-white transition-colors">Tech Classes Near You</Link></li>
             </ul>
           </div>
 
