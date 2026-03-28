@@ -37,7 +37,7 @@ export function generateBaseMetadata(): Metadata {
       locale: 'en_US',
       url: SITE_URL,
       siteName: SITE_NAME,
-      images: [{ url: `${SITE_URL}/images/og-default.jpg`, width: 1200, height: 630, alt: 'TechFor60s — Technology Made Simple' }],
+      images: [{ url: `${SITE_URL}/api/og?title=Technology+Made+Simple+for+Seniors`, width: 1200, height: 630, alt: 'TechFor60s — Technology Made Simple' }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -145,7 +145,7 @@ export function articleJsonLd(post: PostMeta, slug: string, wordCount?: number) 
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: `${SITE_URL}/logo.svg`,
         width: 250,
         height: 60,
       },

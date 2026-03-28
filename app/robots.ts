@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '!/api/og'],
+        disallow: ['/api/'],
       },
     ],
     sitemap: ['https://techfor60s.com/sitemap.xml'],

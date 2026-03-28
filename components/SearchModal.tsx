@@ -82,37 +82,38 @@ export default function SearchModal({ searchData, isOpen, onClose }: SearchModal
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh]">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-xl mx-4 bg-[var(--bg-secondary)] rounded-2xl shadow-2xl border border-[var(--border-color)] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[8vh] sm:pt-[12vh]">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative w-full max-w-lg mx-3 sm:mx-4 bg-[var(--bg-primary)] rounded-2xl shadow-2xl border border-[var(--border-color)] overflow-hidden">
         {/* Search input */}
-        <div className="flex items-center px-4 border-b border-[var(--border-color)]">
-          <Search className="w-5 h-5 text-[var(--text-muted)] shrink-0" />
+        <div className="flex items-center gap-3 px-4 sm:px-5 border-b border-[var(--border-color)]">
+          <Search className="w-5 h-5 text-brand-blue shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search guides..."
-            className="w-full px-3 py-4 text-lg bg-transparent outline-none text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
+            placeholder="Search all guides..."
+            className="w-full py-4 text-base sm:text-lg bg-transparent outline-none text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
           />
-          <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors shrink-0">
             <X className="w-5 h-5 text-[var(--text-muted)]" />
           </button>
         </div>
 
         {/* Results */}
-        <div className="max-h-[60vh] overflow-y-auto p-2">
+        <div className="max-h-[55vh] overflow-y-auto p-2">
           {results.length === 0 && query.trim() ? (
-            <div className="p-8 text-center text-[var(--text-muted)]">
-              No guides found for &ldquo;{query}&rdquo;
+            <div className="p-8 text-center">
+              <p className="text-[var(--text-muted)] text-base">No guides found for &ldquo;{query}&rdquo;</p>
+              <p className="text-[var(--text-muted)] text-sm mt-1">Try different keywords</p>
             </div>
           ) : (
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               {!query.trim() && (
-                <p className="px-3 py-2 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide">
-                  All Guides
+                <p className="px-3 py-2 text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                  Popular Guides
                 </p>
               )}
               {results.map((result, i) => {

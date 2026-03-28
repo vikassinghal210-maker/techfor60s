@@ -80,11 +80,11 @@ export default function Header({ searchData = [] }: HeaderProps) {
             <div className="hidden md:flex items-center gap-1">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border-color)] text-[var(--text-muted)] hover:border-brand-blue/30 hover:text-brand-blue transition-all text-sm"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[var(--bg-tertiary)] text-[var(--text-muted)] hover:text-brand-blue hover:bg-brand-blue/5 transition-all text-sm min-w-[180px]"
               >
-                <Search className="w-4 h-4" />
-                <span className="hidden lg:inline">Search</span>
-                <kbd className="hidden lg:inline text-[10px] px-1.5 py-0.5 rounded border border-[var(--border-color)] font-mono">
+                <Search className="w-4 h-4 shrink-0" />
+                <span className="flex-1 text-left">Search guides...</span>
+                <kbd className="hidden lg:inline text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-color)] font-mono text-[var(--text-muted)]">
                   Ctrl K
                 </kbd>
               </button>
