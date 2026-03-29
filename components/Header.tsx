@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Search, ChevronDown, Smartphone, FileText, Wifi, MapPin } from 'lucide-react'
+import { Menu, X, Search, ChevronDown, Smartphone, FileText, Wifi, MapPin, ShieldAlert, Lock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FontSizeToggle from './FontSizeToggle'
 import DarkModeToggle from './DarkModeToggle'
@@ -23,6 +23,8 @@ const TOOLS_LINKS = [
   { href: '/tools/android-cheat-sheet', label: 'Android Cheat Sheet', desc: 'Printable quick reference', icon: FileText },
   { href: '/tools/internet-by-state', label: 'Internet by State', desc: 'Compare plans in your state', icon: Wifi },
   { href: '/tools/tech-classes', label: 'Tech Classes Near You', desc: 'Free classes in 30 cities', icon: MapPin },
+  { href: '/tools/scam-checker', label: 'Scam Checker', desc: 'Check if a message is a scam', icon: ShieldAlert },
+  { href: '/tools/password-checker', label: 'Password Checker', desc: 'Test and generate passwords', icon: Lock },
 ]
 
 interface HeaderProps {

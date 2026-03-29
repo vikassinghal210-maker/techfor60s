@@ -21,6 +21,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  const toolPages = [
+    '/tools',
+    '/tools/device-quiz',
+    '/tools/iphone-cheat-sheet',
+    '/tools/android-cheat-sheet',
+    '/tools/internet-speed-calculator',
+    '/tools/internet-by-state',
+    '/tools/tech-classes',
+    '/tools/scam-checker',
+    '/tools/cord-cutting-calculator',
+    '/tools/phone-plan-calculator',
+    '/tools/wifi-troubleshooter',
+    '/tools/password-checker',
+  ].map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   const corePages = [
     { url: SITE_URL, lastModified: new Date(), changeFrequency: 'daily' as const, priority: 1.0 },
     { url: `${SITE_URL}/blog`, lastModified: new Date(), changeFrequency: 'daily' as const, priority: 0.9 },
@@ -28,5 +48,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.4 },
   ]
 
-  return [...corePages, ...categoryEntries, ...postEntries]
+  return [...corePages, ...toolPages, ...categoryEntries, ...postEntries]
 }

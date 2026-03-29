@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Smartphone, FileText, Wifi, MapPin } from 'lucide-react'
+import { Smartphone, FileText, Wifi, MapPin, ShieldAlert, Tv, DollarSign, WifiOff, Lock } from 'lucide-react'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -53,6 +53,41 @@ const TOOLS = [
     color: 'bg-red-100 text-red-600 dark:bg-red-900/30',
     title: 'Free Tech Classes Near You',
     desc: 'Find free computer and smartphone classes for seniors in 30 major US and UK cities.',
+  },
+  {
+    href: '/tools/scam-checker',
+    icon: ShieldAlert,
+    color: 'bg-rose-100 text-rose-600 dark:bg-rose-900/30',
+    title: 'Is This a Scam?',
+    desc: 'Paste a suspicious email or text message and instantly check it for common scam warning signs.',
+  },
+  {
+    href: '/tools/cord-cutting-calculator',
+    icon: Tv,
+    color: 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30',
+    title: 'Cord-Cutting Savings Calculator',
+    desc: 'Find out how much you could save by switching from cable TV to streaming services.',
+  },
+  {
+    href: '/tools/phone-plan-calculator',
+    icon: DollarSign,
+    color: 'bg-teal-100 text-teal-600 dark:bg-teal-900/30',
+    title: 'Phone Plan Savings Calculator',
+    desc: 'Compare your current phone bill against senior-friendly plans and see potential savings.',
+  },
+  {
+    href: '/tools/wifi-troubleshooter',
+    icon: WifiOff,
+    color: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30',
+    title: 'WiFi Troubleshooter',
+    desc: 'WiFi not working? Answer a few yes/no questions and get step-by-step instructions to fix it.',
+  },
+  {
+    href: '/tools/password-checker',
+    icon: Lock,
+    color: 'bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30',
+    title: 'Password Strength Checker',
+    desc: 'Check if your password is strong enough and generate memorable, secure passwords.',
   },
 ]
 
