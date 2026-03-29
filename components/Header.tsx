@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Search, ChevronDown, Smartphone, FileText, Wifi, MapPin, ShieldAlert, Lock } from 'lucide-react'
+import { Menu, X, Search, ChevronDown, Smartphone, FileText, Wifi, MapPin, ShieldAlert, Lock, Accessibility, Printer } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FontSizeToggle from './FontSizeToggle'
 import DarkModeToggle from './DarkModeToggle'
@@ -25,6 +25,8 @@ const TOOLS_LINKS = [
   { href: '/tools/tech-classes', label: 'Tech Classes Near You', desc: 'Free classes in 30 cities', icon: MapPin },
   { href: '/tools/scam-checker', label: 'Scam Checker', desc: 'Check if a message is a scam', icon: ShieldAlert },
   { href: '/tools/password-checker', label: 'Password Checker', desc: 'Test and generate passwords', icon: Lock },
+  { href: '/accessibility', label: 'Accessibility Guides', desc: 'Settings for vision, hearing & more', icon: Accessibility },
+  { href: '/resources', label: 'Printable Guides', desc: 'Print-friendly cheat sheets', icon: Printer },
 ]
 
 interface HeaderProps {

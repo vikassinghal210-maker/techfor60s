@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { getAllPostsMeta } from '@/lib/mdx'
 import { SITE_URL, CATEGORIES } from '@/lib/utils'
+import { CONDITIONS, ACCESS_DEVICES, getAllConditionDevicePairs } from '@/lib/accessibility-data'
+import { getAllPrintableSlugs } from '@/lib/printables-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPostsMeta()
@@ -48,5 +50,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.4 },
   ]
 
-  return [...corePages, ...toolPages, ...categoryEntries, ...postEntries]
+  const accessibilityPages = [
+    { url: `${SITE_URL}/accessibility`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    ...CONDITIONS.map((c) => ({
+      url: `${SITE_URL}/accessibility/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...getAllConditionDevicePairs().map((pair) => ({
+      url: `${SITE_URL}/accessibility/${pair.condition}/${pair.device}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
+
+  const resourcePages = [
+    { url: `${SITE_URL}/resources`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    ...getAllPrintableSlugs().map((slug) => ({
+      url: `${SITE_URL}/resources/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
+
+  return [...corePages, ...toolPages, ...accessibilityPages, ...resourcePages, ...categoryEntries, ...postEntries]
 }
