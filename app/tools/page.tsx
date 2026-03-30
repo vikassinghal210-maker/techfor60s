@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Smartphone, FileText, Wifi, MapPin, ShieldAlert, Tv, DollarSign, WifiOff, Lock } from 'lucide-react'
+import { Smartphone, FileText, Wifi, MapPin, ShieldAlert, Tv, DollarSign, WifiOff, Lock, Phone, Globe, HelpCircle, Flag, Bell, Database } from 'lucide-react'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -88,6 +88,48 @@ const TOOLS = [
     color: 'bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30',
     title: 'Password Strength Checker',
     desc: 'Check if your password is strong enough and generate memorable, secure passwords.',
+  },
+  {
+    href: '/tools/scam-phone-lookup',
+    icon: Phone,
+    color: 'bg-red-100 text-red-600 dark:bg-red-900/30',
+    title: 'Scam Phone Number Lookup',
+    desc: 'Enter a phone number to check it against known scam patterns, spoofed government numbers, and robocall indicators.',
+  },
+  {
+    href: '/tools/is-this-website-safe',
+    icon: Globe,
+    color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30',
+    title: 'Is This Website Safe?',
+    desc: 'Paste any URL and we will check it for phishing, typosquatting, suspicious domains, and other red flags.',
+  },
+  {
+    href: '/tools/scam-quiz',
+    icon: HelpCircle,
+    color: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30',
+    title: 'What Type of Scam Is This?',
+    desc: 'Answer a few questions about what happened and we will identify the scam type and tell you exactly what to do.',
+  },
+  {
+    href: '/tools/report-scam',
+    icon: Flag,
+    color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30',
+    title: 'Report a Scam — Step by Step',
+    desc: 'A guided wizard that tells you exactly where and how to report a scam based on your country and situation.',
+  },
+  {
+    href: '/tools/latest-scams',
+    icon: Bell,
+    color: 'bg-pink-100 text-pink-600 dark:bg-pink-900/30',
+    title: 'Latest Scam Alerts',
+    desc: 'Stay informed with the latest scam warnings — searchable and filterable by type, severity, and category.',
+  },
+  {
+    href: '/tools/data-breach-checker',
+    icon: Database,
+    color: 'bg-slate-100 text-slate-600 dark:bg-slate-900/30',
+    title: 'Data Breach Checker',
+    desc: 'Search 25+ major data breaches to see if your accounts may be affected, and get step-by-step protection advice.',
   },
 ]
 
