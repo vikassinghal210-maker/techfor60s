@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import AdSense from '@/components/AdSense'
 import { getAllPostsMeta } from '@/lib/mdx'
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default async function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <GoogleAnalytics />
+        <AdSense />
         <ThemeProvider>
           <a href="#main-content" className="skip-to-content">
             Skip to main content
