@@ -3,6 +3,7 @@ import { getAllPostsMeta } from '@/lib/mdx'
 import { SITE_URL, CATEGORIES } from '@/lib/utils'
 import { CONDITIONS, ACCESS_DEVICES, getAllConditionDevicePairs } from '@/lib/accessibility-data'
 import { getAllPrintableSlugs } from '@/lib/printables-data'
+import { TASKS, getAllValidPairs } from '@/lib/howto-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPostsMeta()
@@ -76,5 +77,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]
 
-  return [...corePages, ...toolPages, ...accessibilityPages, ...resourcePages, ...categoryEntries, ...postEntries]
+  const howToPages = [
+    { url: `${SITE_URL}/how-to`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
+    ...TASKS.map((t) => ({
+      url: `${SITE_URL}/how-to/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...getAllValidPairs().map((pair) => ({
+      url: `${SITE_URL}/how-to/${pair.task}/${pair.device}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
+
+  return [...corePages, ...toolPages, ...accessibilityPages, ...resourcePages, ...howToPages, ...categoryEntries, ...postEntries]
 }
