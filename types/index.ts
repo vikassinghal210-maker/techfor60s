@@ -16,6 +16,7 @@ export interface PostFrontmatter {
   estimatedTime?: string
   featured?: boolean
   noindex?: boolean
+  canonical?: string
 }
 
 export interface Post extends PostFrontmatter {

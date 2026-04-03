@@ -93,7 +93,7 @@ export function generateArticleMetadata(post: PostMeta, slug: string): Metadata 
       images: [imageUrl],
       site: '@TechFor60s',
     },
-    alternates: { canonical: url },
+    alternates: { canonical: post.canonical ? `${SITE_URL}${post.canonical}` : url },
   }
 }
 
@@ -224,6 +224,79 @@ export function howToJsonLd(params: {
       text: step.text,
     })),
   }
+}
+
+export function organizationJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/logo.svg`,
+      width: 250,
+      height: 60,
+    },
+    description:
+      'Simple, jargon-free technology guides for adults over 60. Learn smartphones, tablets, apps, and online safety at your own pace.',
+    foundingDate: '2024',
+    sameAs: ['https://twitter.com/TechFor60s'],
+  }
+}
+
+export function itemListJsonLd(items: { name: string; url: string; position: number }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      name: item.name,
+      url: item.url,
+    })),
+  }
+}
+
+export function extractFaqsFromMarkdown(content: string): { question: string; answer: string }[] {
+  const faqSectionMatch = content.match(
+    /#{1,3}\s*(?:Frequently Asked Questions|FAQ|Common Questions|FAQs)[^\n]*\n([\s\S]*?)(?=\n#{1,3}\s|\s*$)/i
+  )
+  if (!faqSectionMatch) return []
+
+  const faqBlock = faqSectionMatch[1]
+  const qaPattern = /#{2,4}\s+(.+?)\n([\s\S]*?)(?=\n#{2,4}\s|\s*$)/g
+  const faqs: { question: string; answer: string }[] = []
+  let match
+
+  while ((match = qaPattern.exec(faqBlock)) !== null) {
+    const question = match[1].trim()
+    const answer = match[2].trim().replace(/\n+/g, ' ').replace(/\*\*|__|\*|_|`/g, '').substring(0, 500)
+    if (question && answer) {
+      faqs.push({ question, answer })
+    }
+  }
+
+  return faqs
+}
+
+export function extractHowToStepsFromMarkdown(
+  content: string,
+  title: string
+): { name: string; text: string }[] | null {
+  const stepPattern = /#{1,3}\s+(?:Step\s+\d+[:.—-]?\s*)(.+?)\n([\s\S]*?)(?=\n#{1,3}\s|\s*$)/gi
+  const steps: { name: string; text: string }[] = []
+  let match
+
+  while ((match = stepPattern.exec(content)) !== null) {
+    const name = match[1].trim()
+    const text = match[2].trim().replace(/\n+/g, ' ').replace(/\*\*|__|\*|_|`/g, '').substring(0, 300)
+    if (name && text) {
+      steps.push({ name, text })
+    }
+  }
+
+  return steps.length >= 2 ? steps : null
 }
 
 export function productReviewJsonLd(params: {
