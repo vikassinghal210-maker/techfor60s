@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Fuse from 'fuse.js'
 import type { SearchResult } from '@/lib/search'
 import { getCategoryInfo } from '@/lib/utils'
+import { trackSearch } from '@/lib/ga-events'
 
 interface SearchModalProps {
   searchData: SearchResult[]
@@ -49,6 +50,7 @@ export default function SearchModal({ searchData, isOpen, onClose }: SearchModal
     if (fuseRef.current) {
       const found = fuseRef.current.search(query).slice(0, 8)
       setResults(found.map(r => r.item))
+      if (query.trim().length >= 3) trackSearch('site-search', query)
     }
     setSelectedIndex(0)
   }, [query, searchData])

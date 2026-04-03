@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { trackAccessibility } from '@/lib/ga-events'
 
 export default function FontSizeToggle() {
   const [isLarge, setIsLarge] = useState(false)
@@ -16,6 +17,7 @@ export default function FontSizeToggle() {
   function toggle() {
     const next = !isLarge
     setIsLarge(next)
+    trackAccessibility('font-size', next ? 'large' : 'normal')
     if (next) {
       document.documentElement.classList.add('large-text')
       localStorage.setItem('techfor60s-large-text', 'true')

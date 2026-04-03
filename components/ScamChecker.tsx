@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { trackToolUsage } from '@/lib/ga-events'
 import { ShieldAlert, ShieldCheck, AlertTriangle, CheckCircle, XCircle, Info } from 'lucide-react'
 
 interface RedFlag {
@@ -206,7 +207,9 @@ export default function ScamChecker() {
 
   const handleCheck = () => {
     if (text.trim().length < 10) return
-    setResult(analyzeText(text))
+    const analysis = analyzeText(text)
+    setResult(analysis)
+    trackToolUsage('scam-checker', analysis.verdict)
   }
 
   const handleClear = () => {

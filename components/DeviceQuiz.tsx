@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { RotateCcw, Smartphone, Tablet, ChevronRight, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
+import { trackToolUsage, trackQuizComplete } from '@/lib/ga-events'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -266,9 +267,12 @@ export default function DeviceQuiz() {
       const newAnswers = { ...answers, [questionId]: value }
       setAnswers(newAnswers)
 
+      if (currentStep === 0) trackToolUsage('device-quiz', 'start')
       if (currentStep < totalSteps - 1) {
         setTimeout(() => setCurrentStep((s) => s + 1), 300)
       } else {
+        const rec = getRecommendation(newAnswers)
+        trackQuizComplete('device-quiz', rec.deviceType)
         setTimeout(() => setShowResult(true), 300)
       }
     },

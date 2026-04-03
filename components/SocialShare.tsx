@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Globe, Share2, Mail, Link2, Check, MessageCircle } from 'lucide-react'
+import { trackSocialShare } from '@/lib/ga-events'
 
 interface SocialShareProps {
   url: string
@@ -68,6 +69,7 @@ export default function SocialShare({ url, title }: SocialShareProps) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackSocialShare(link.name, 'article', title)}
           className={`w-9 h-9 rounded-full border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] transition-all ${link.color}`}
           aria-label={`Share on ${link.name}`}
         >
