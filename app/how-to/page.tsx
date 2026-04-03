@@ -9,7 +9,7 @@ import {
   getTasksByCategory,
 } from '@/lib/howto-data'
 import { SITE_URL } from '@/lib/utils'
-import { breadcrumbJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, itemListJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import DevicePicker from '@/components/DevicePicker'
 
@@ -66,6 +66,20 @@ export default function HowToIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbJsonLd(breadcrumbs)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            itemListJsonLd(
+              TASKS.map((task, index) => ({
+                name: task.name,
+                url: `${SITE_URL}/how-to/${task.slug}`,
+                position: index + 1,
+              }))
+            )
+          ),
         }}
       />
 

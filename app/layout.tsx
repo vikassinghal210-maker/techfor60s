@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import AdSense from '@/components/AdSense'
+import { PreloadResources } from '@/components/PreloadResources'
 import { getAllPostsMeta } from '@/lib/mdx'
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default async function RootLayout({
         `}} />
       </head>
       <body className="min-h-screen flex flex-col">
+        <PreloadResources />
         <GoogleAnalytics />
         <AdSense />
         <ThemeProvider>

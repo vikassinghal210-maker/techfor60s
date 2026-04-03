@@ -42,6 +42,14 @@ export async function generateMetadata(
       title: `${title} | TechFor60s`,
       description,
       url,
+      images: [
+        {
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
   }
 }

@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}/tools/scam-checker`
 export const metadata: Metadata = {
   title: 'Is This a Scam? — Free Scam Checker Tool for Seniors',
   description:
-    'Paste any suspicious email, text message, or social media message and our free tool will check it for common scam warning signs. Designed for seniors — simple, clear, and easy to use.',
+    'Paste any suspicious email or text and our free tool checks it for scam warning signs. Simple, private, and designed for seniors.',
   keywords: [
     'is this a scam',
     'scam checker',
