@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllPostsMeta, getFeaturedPost, getPostsByCategory } from '@/lib/mdx'
@@ -6,6 +7,20 @@ import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import ArticleCard from '@/components/ArticleCard'
 import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin, Gift, DollarSign, HelpCircle, Phone, Search } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: {
+    absolute: 'TechFor60s — Simple Tech Guides, Tools & Safety Tips for Seniors',
+  },
+  description:
+    'Free, jargon-free tech guides for adults over 60. Learn smartphones, tablets, apps, online safety, and smart home devices at your own pace. 150+ guides, 18 interactive tools.',
+  openGraph: {
+    title: 'TechFor60s — Simple Tech Guides, Tools & Safety Tips for Seniors',
+    description:
+      'Free, jargon-free tech guides for adults over 60. 150+ guides, 18 interactive tools, and printable cheat sheets.',
+    url: SITE_URL,
+  },
+}
 
 export const revalidate = 3600
 
