@@ -259,19 +259,32 @@ export function itemListJsonLd(items: { name: string; url: string; position: num
 }
 
 export function extractFaqsFromMarkdown(content: string): { question: string; answer: string }[] {
-  const faqSectionMatch = content.match(
-    /#{1,3}\s*(?:Frequently Asked Questions|FAQ|Common Questions|FAQs)[^\n]*\n([\s\S]*?)(?=\n#{1,3}\s|\s*$)/i
+  // Split on H2 boundaries to isolate the FAQ section
+  const sections = content.split(/\n(?=## )/)
+  const faqSection = sections.find((s) =>
+    /^## (?:Frequently Asked Questions|FAQ|Common Questions|FAQs)/i.test(s)
   )
-  if (!faqSectionMatch) return []
+  if (!faqSection) return []
 
-  const faqBlock = faqSectionMatch[1]
-  const qaPattern = /#{2,4}\s+(.+?)\n([\s\S]*?)(?=\n#{2,4}\s|\s*$)/g
+  // Split FAQ section on H3 boundaries to get individual Q&A pairs
+  const parts = faqSection.split(/\n(?=### )/)
   const faqs: { question: string; answer: string }[] = []
-  let match
 
-  while ((match = qaPattern.exec(faqBlock)) !== null) {
-    const question = match[1].trim()
-    const answer = match[2].trim().replace(/\n+/g, ' ').replace(/\*\*|__|\*|_|`/g, '').substring(0, 500)
+  for (let i = 1; i < parts.length; i++) {
+    const part = parts[i]
+    const firstNewline = part.indexOf('\n')
+    if (firstNewline === -1) continue
+
+    // Strip the leading '### ' prefix (4 chars)
+    const question = part.substring(4, firstNewline).trim()
+    const answer = part
+      .substring(firstNewline + 1)
+      .trim()
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // strip markdown links, keep text
+      .replace(/\n+/g, ' ')
+      .replace(/\*\*|__|\*|_|`/g, '')
+      .substring(0, 500)
+
     if (question && answer) {
       faqs.push({ question, answer })
     }
