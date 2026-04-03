@@ -175,6 +175,41 @@ export default function AppGuidesIndex() {
         </div>
       </section>
 
+      {/* Related Resources */}
+      <section className="mb-10">
+        <h2
+          className="text-2xl font-bold font-[family-name:var(--font-heading)] mb-6"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          Related Resources
+        </h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { href: '/blog/best-video-calling-apps-for-seniors', title: 'Best Video Calling Apps for Seniors', desc: 'Compare Zoom, FaceTime, WhatsApp, and more.' },
+            { href: '/blog/best-free-apps-for-seniors-2026', title: 'Best Free Apps for Seniors (2026)', desc: 'Our top picks for useful free apps.' },
+            { href: '/how-to', title: 'Step-by-Step How-To Guides', desc: 'Learn common tasks on any device.' },
+            { href: '/tools/device-quiz', title: 'Which Device Is Right for You?', desc: 'Take our quiz to find the best phone or tablet.' },
+            { href: '/error-lookup', title: 'Error Message Lookup', desc: 'See a confusing error? We explain it in plain English.' },
+            { href: '/resources', title: 'Printable Cheat Sheets', desc: 'Download one-page references for popular apps.' },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group rounded-xl border p-4 transition-all hover:shadow-md"
+              style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)' }}
+            >
+              <h3
+                className="font-semibold group-hover:text-brand-blue transition-colors mb-1"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                {item.title}
+              </h3>
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Back to home */}
       <div className="text-center pt-4 border-t" style={{ borderColor: 'var(--border-color)' }}>
         <Link href="/" className="text-brand-blue hover:underline font-medium">

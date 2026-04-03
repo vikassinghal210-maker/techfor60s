@@ -216,6 +216,35 @@ export default function CompareIndexPage() {
             })}
           </div>
         </section>
+
+        {/* Related Guides */}
+        <section>
+          <h2 className="text-xl sm:text-2xl font-bold font-[family-name:var(--font-heading)] mb-6" style={{ color: 'var(--text-primary)' }}>
+            Related Guides
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { href: '/blog/best-smartphones-for-seniors-2026', title: 'Best Smartphones for Seniors (2026)', desc: 'Our top picks with full reviews and ratings.' },
+              { href: '/blog/best-large-button-phones-for-seniors', title: 'Best Large Button Phones', desc: 'Simple phones with big buttons and easy interfaces.' },
+              { href: '/tools/device-quiz', title: 'Which Device Is Right for You?', desc: 'Take our 5-question quiz to find the perfect device.' },
+              { href: '/phone-plans', title: 'Phone Plan Comparator', desc: 'Found your phone? Now find the best plan for it.' },
+              { href: '/blog/best-phone-plans-for-seniors-2026', title: 'Best Phone Plans for Seniors', desc: 'Compare plans with senior discounts from all carriers.' },
+              { href: '/senior-discounts', title: 'Senior Discount Directory', desc: 'Save on phones, plans, and 150+ more discounts.' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-xl p-4 transition-all hover:shadow-md group"
+                style={{ backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-color)' }}
+              >
+                <h3 className="font-semibold text-sm mb-1 group-hover:text-brand-blue transition-colors" style={{ color: 'var(--text-primary)' }}>
+                  {item.title}
+                </h3>
+                <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </>
   )

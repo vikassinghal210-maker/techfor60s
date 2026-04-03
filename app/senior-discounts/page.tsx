@@ -222,6 +222,41 @@ export default function SeniorDiscountsPage() {
           </h2>
           <DiscountSearch discounts={allDiscounts} />
         </section>
+
+        {/* Related Guides */}
+        <section className="mt-14">
+          <h2
+            className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl font-bold mb-6"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            Related Guides
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { href: '/blog/best-phone-plans-for-seniors-2026', title: 'Best Phone Plans for Seniors (2026)', desc: 'Compare the most affordable phone plans with senior discounts.' },
+              { href: '/blog/best-internet-plans-for-seniors-2026', title: 'Best Internet Plans for Seniors (2026)', desc: 'Find low-cost internet with senior-specific pricing.' },
+              { href: '/blog/best-streaming-services-for-seniors', title: 'Best Streaming Services for Seniors', desc: 'Cut cable costs with these senior-friendly streaming options.' },
+              { href: '/phone-plans', title: 'Senior Phone Plan Comparator', desc: 'Compare all major carriers side by side with senior pricing.' },
+              { href: '/tools/cord-cutting-calculator', title: 'Cord Cutting Calculator', desc: 'See how much you could save by switching to streaming.' },
+              { href: '/tools/internet-by-state', title: 'Internet Plans by State', desc: 'Find the best internet deals in your state.' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-xl border p-5 transition-all hover:shadow-lg hover:-translate-y-0.5"
+                style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)' }}
+              >
+                <h3
+                  className="font-[family-name:var(--font-heading)] text-base font-bold group-hover:text-brand-blue transition-colors mb-2"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {item.title}
+                </h3>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </>
   )

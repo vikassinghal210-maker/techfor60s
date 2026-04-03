@@ -5,7 +5,7 @@ import { CATEGORIES, formatDate } from '@/lib/utils'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import ArticleCard from '@/components/ArticleCard'
-import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin } from 'lucide-react'
+import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin, Gift, DollarSign, HelpCircle, Phone, Search } from 'lucide-react'
 
 export const revalidate = 3600
 
@@ -240,6 +240,85 @@ export default function HomePage() {
             >
               View all tools <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Explore More ─── */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-3">
+              Explore More Resources
+            </h2>
+            <p className="text-[var(--text-secondary)] max-w-lg mx-auto">
+              Tools, directories, and guides to save money and get help with technology.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 no-underline">
+            {[
+              {
+                href: '/compare',
+                icon: Search,
+                color: 'bg-blue-100 text-brand-blue dark:bg-blue-900/30',
+                title: 'Compare Phones',
+                desc: 'Side-by-side phone comparisons with senior-friendly ratings.',
+              },
+              {
+                href: '/phone-plans',
+                icon: Phone,
+                color: 'bg-green-100 text-green-600 dark:bg-green-900/30',
+                title: 'Phone Plan Comparator',
+                desc: 'Compare carriers with senior discounts and AARP pricing.',
+              },
+              {
+                href: '/senior-discounts',
+                icon: DollarSign,
+                color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30',
+                title: '150+ Senior Discounts',
+                desc: 'A complete directory of discounts you may not know about.',
+              },
+              {
+                href: '/gifts',
+                icon: Gift,
+                color: 'bg-pink-100 text-pink-600 dark:bg-pink-900/30',
+                title: 'Tech Gift Finder',
+                desc: 'Find the perfect tech gift by occasion, budget, or interest.',
+              },
+              {
+                href: '/error-lookup',
+                icon: HelpCircle,
+                color: 'bg-red-100 text-red-600 dark:bg-red-900/30',
+                title: 'Error Message Lookup',
+                desc: 'See a confusing error? We explain it in plain English.',
+              },
+              {
+                href: '/app-guides',
+                icon: Smartphone,
+                color: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30',
+                title: 'App Guides',
+                desc: 'Step-by-step guides for WhatsApp, Zoom, Facebook, and more.',
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group card p-5 flex items-start gap-4 hover:border-brand-blue/30 no-underline transition-all"
+              >
+                <div className={`w-11 h-11 rounded-xl ${item.color} flex items-center justify-center shrink-0`}>
+                  <item.icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors">
+                      {item.title}
+                    </h3>
+                    <ChevronRight className="w-4 h-4 text-[var(--text-muted)] group-hover:text-brand-blue transition-all group-hover:translate-x-0.5" />
+                  </div>
+                  <p className="text-[var(--text-secondary)] text-sm line-clamp-2">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

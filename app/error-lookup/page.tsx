@@ -137,6 +137,34 @@ export default function ErrorLookupPage() {
           </div>
         </section>
 
+        {/* Related Help */}
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-6">
+            More Help With Your Device
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { href: '/how-to', title: 'Step-by-Step How-To Guides', desc: 'Learn common tasks on iPhone, Android, Windows, and Mac.' },
+              { href: '/app-guides', title: 'App Guides for Seniors', desc: 'Simple tutorials for WhatsApp, Zoom, Facebook, and more.' },
+              { href: '/tools/wifi-troubleshooter', title: 'WiFi Troubleshooter', desc: 'Fix internet connection issues step by step.' },
+              { href: '/tools/scam-checker', title: 'Scam Checker', desc: 'Got a suspicious message? Check if it is a scam.' },
+              { href: '/tech-support', title: 'Tech Support Hotline Finder', desc: 'Find the right phone number to call for help.' },
+              { href: '/accessibility', title: 'Accessibility Settings', desc: 'Make your device easier to see, hear, and use.' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="card p-4 hover:border-brand-blue/30 transition-all no-underline group"
+              >
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Reassuring message */}
         <section className="mt-14 card p-8 text-center bg-blue-50 dark:bg-blue-900/10 border-brand-blue/20">
           <p className="text-xl font-semibold text-[var(--text-primary)] mb-2">
