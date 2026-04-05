@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PasswordChecker from '@/components/PasswordChecker'
 
@@ -76,6 +76,7 @@ export default function PasswordCheckerPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(breadcrumbs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd({ name: 'Password Strength Checker', description: 'A free browser-based tool that tests password strength and generates strong, memorable passwords for seniors.', url: PAGE_URL, category: 'SecurityApplication' })) }} />
 
       <Breadcrumbs items={[
         { label: 'Home', href: '/' },

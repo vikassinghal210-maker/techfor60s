@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import WebsiteSafetyChecker from '@/components/WebsiteSafetyChecker'
 
@@ -98,6 +98,10 @@ export default function WebsiteSafetyCheckerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd({ name: 'Website Safety Checker', description: 'A free tool that checks if a website is safe to visit by analyzing its URL for known threats and suspicious patterns.', url: PAGE_URL, category: 'SecurityApplication' })) }}
       />
 
       <Breadcrumbs

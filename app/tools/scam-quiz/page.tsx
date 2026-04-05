@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ScamQuiz from '@/components/ScamQuiz'
 
@@ -91,6 +91,10 @@ export default function ScamQuizPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd({ name: 'Scam Type Identifier Quiz', description: 'A free interactive quiz that helps seniors identify different types of scams and learn how to protect themselves.', url: `${SITE_URL}/tools/scam-quiz`, category: 'SecurityApplication' })) }}
       />
 
       <Breadcrumbs

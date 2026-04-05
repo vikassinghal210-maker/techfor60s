@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import DataBreachChecker from '@/components/DataBreachChecker'
 
@@ -95,6 +95,10 @@ export default function DataBreachCheckerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd({ name: 'Data Breach Checker', description: 'A free tool that checks if your email address has been exposed in known data breaches.', url: PAGE_URL, category: 'SecurityApplication' })) }}
       />
 
       <Breadcrumbs

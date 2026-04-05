@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SpeedCalculator from '@/components/SpeedCalculator'
 
@@ -129,6 +129,12 @@ export default function InternetSpeedCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd(jsonLdFaqs)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webApplicationJsonLd({ name: 'Internet Speed Calculator', description: 'A free tool that helps seniors calculate how much internet speed they need based on their usage habits.', url: PAGE_URL })),
         }}
       />
 

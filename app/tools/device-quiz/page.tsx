@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import DeviceQuiz from '@/components/DeviceQuiz'
 import Link from 'next/link'
@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}/tools/device-quiz`
 export const metadata: Metadata = {
   title: 'Which Device Is Right for You? — Free Quiz for Seniors',
   description:
-    'Not sure whether to get an iPhone, Android, or tablet? Take our free 2-minute quiz designed for seniors and get a personalized device recommendation based on your needs and budget.',
+    'Not sure whether to get an iPhone, Android, or tablet? Take our free 2-minute quiz for seniors and get a personalized device recommendation based on your needs.',
   keywords: [
     'best phone for seniors quiz',
     'which tablet should I buy senior',
@@ -112,6 +112,12 @@ export default function DeviceQuizPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd(jsonLdFaqs)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webApplicationJsonLd({ name: 'Device Quiz for Seniors', description: 'A free interactive quiz that helps seniors find the right phone, tablet, or device based on their needs and preferences.', url: PAGE_URL })),
         }}
       />
 

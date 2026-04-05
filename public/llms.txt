@@ -1,0 +1,42 @@
+# TechFor60s
+> Simple technology guides for adults over 60. No jargon, no rush.
+
+## About
+TechFor60s is a free educational publisher helping seniors master smartphones, tablets, apps, and online safety with clear, step-by-step guides.
+
+## Content Categories
+- How-To Guides: https://techfor60s.com/category/how-to-guides
+- Product Reviews: https://techfor60s.com/category/product-reviews
+- Safety & Security: https://techfor60s.com/category/safety-security
+- Tech Explained: https://techfor60s.com/category/explainers
+- Apps & Services: https://techfor60s.com/category/apps-services
+
+## Free Tools
+- Device Quiz: https://techfor60s.com/tools/device-quiz
+- Scam Checker: https://techfor60s.com/tools/scam-checker
+- Password Checker: https://techfor60s.com/tools/password-checker
+- WiFi Troubleshooter: https://techfor60s.com/tools/wifi-troubleshooter
+- Internet Speed Calculator: https://techfor60s.com/tools/internet-speed-calculator
+- Phone Plan Calculator: https://techfor60s.com/tools/phone-plan-calculator
+- Website Safety Checker: https://techfor60s.com/tools/is-this-website-safe
+- Data Breach Checker: https://techfor60s.com/tools/data-breach-checker
+
+## Other Resources
+- Accessibility Guides: https://techfor60s.com/accessibility
+- Printable Cheat Sheets: https://techfor60s.com/resources
+- Phone Comparisons: https://techfor60s.com/compare
+- Senior Discounts: https://techfor60s.com/senior-discounts
+- Tech Classes by City: https://techfor60s.com/tools/tech-classes
+- Internet by State: https://techfor60s.com/tools/internet-by-state
+- App Guides: https://techfor60s.com/app-guides
+- Error Lookup: https://techfor60s.com/error-lookup
+
+## Editorial Standards
+All guides are written in plain English, tested before publication, and reviewed for accuracy. We only recommend products we have evaluated. Affiliate links are always disclosed.
+
+## Licensing
+Content is available for AI citation with attribution to TechFor60s (https://techfor60s.com).
+
+## Contact
+- Website: https://techfor60s.com/contact
+- About: https://techfor60s.com/about

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ScamChecker from '@/components/ScamChecker'
 
@@ -93,6 +93,19 @@ export default function ScamCheckerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webApplicationJsonLd({
+              name: 'Scam Message Checker',
+              description: 'A free browser-based tool that scans messages for common scam patterns including urgency tactics, suspicious links, and requests for personal information.',
+              url: PAGE_URL,
+              category: 'SecurityApplication',
+            })
+          ),
+        }}
       />
 
       <Breadcrumbs

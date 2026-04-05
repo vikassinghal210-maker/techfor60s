@@ -135,20 +135,13 @@ export function articleJsonLd(post: PostMeta, slug: string, wordCount?: number) 
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
     author: {
-      '@type': 'Person',
-      name: post.author,
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: SITE_NAME,
       url: `${SITE_URL}/about`,
     },
     publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.svg`,
-        width: 250,
-        height: 60,
-      },
+      '@id': `${SITE_URL}/#organization`,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -190,8 +183,10 @@ export function websiteJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
+    publisher: { '@id': `${SITE_URL}/#organization` },
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -230,6 +225,7 @@ export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
     logo: {
@@ -242,6 +238,34 @@ export function organizationJsonLd() {
       'Simple, jargon-free technology guides for adults over 60. Learn smartphones, tablets, apps, and online safety at your own pace.',
     foundingDate: '2024',
     sameAs: ['https://twitter.com/TechFor60s'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      url: `${SITE_URL}/contact`,
+    },
+  }
+}
+
+export function webApplicationJsonLd(params: {
+  name: string
+  description: string
+  url: string
+  category?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: params.name,
+    url: params.url,
+    description: params.description,
+    applicationCategory: params.category ?? 'UtilitiesApplication',
+    operatingSystem: 'Any (browser-based)',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    publisher: { '@id': `${SITE_URL}/#organization` },
   }
 }
 

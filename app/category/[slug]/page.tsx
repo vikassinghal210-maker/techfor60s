@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPostsByCategory } from '@/lib/mdx'
-import { generateCategoryMetadata } from '@/lib/seo'
-import { CATEGORIES, getCategoryInfo } from '@/lib/utils'
+import { generateCategoryMetadata, breadcrumbJsonLd, itemListJsonLd } from '@/lib/seo'
+import { CATEGORIES, getCategoryInfo, SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ArticleCard from '@/components/ArticleCard'
 import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight } from 'lucide-react'
@@ -43,6 +43,34 @@ export default async function CategoryPage(
   const otherCategories = CATEGORIES.filter((c) => c.slug !== slug)
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: 'Home', url: SITE_URL },
+              { name: cat.label, url: `${SITE_URL}/category/${slug}` },
+            ])
+          ),
+        }}
+      />
+      {posts.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              itemListJsonLd(
+                posts.slice(0, 10).map((p, i) => ({
+                  position: i + 1,
+                  name: p.title,
+                  url: `${SITE_URL}/blog/${p.slug}`,
+                }))
+              )
+            ),
+          }}
+        />
+      )}
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: cat.label }]} />
 
@@ -110,5 +138,6 @@ export default async function CategoryPage(
         </div>
       </section>
     </div>
+    </>
   )
 }

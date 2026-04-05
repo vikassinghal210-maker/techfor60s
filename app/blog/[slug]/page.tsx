@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllSlugs, getPostBySlug, getRelatedPosts, markdownToHtml } from '@/lib/mdx'
-import { generateArticleMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo'
+import { generateArticleMetadata, articleJsonLd, breadcrumbJsonLd, faqJsonLd, extractFaqsFromMarkdown } from '@/lib/seo'
 import { formatDate, getCategoryInfo, SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReadingProgress from '@/components/ReadingProgress'
@@ -40,6 +40,7 @@ export default async function BlogPostPage(
   const wordCount = post.content.trim().split(/\s+/).length
   const articleUrl = `${SITE_URL}/blog/${slug}`
   const htmlContent = markdownToHtml(post.content)
+  const faqs = extractFaqsFromMarkdown(post.content)
 
   return (
     <>
@@ -64,7 +65,12 @@ export default async function BlogPostPage(
           ),
         }}
       />
-
+      {faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
+        />
+      )}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <Breadcrumbs
           items={[

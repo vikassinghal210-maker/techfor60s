@@ -15,16 +15,24 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'iPhone Cheat Sheet for Seniors — Free Printable Quick Reference',
+  title: 'iPhone Cheat Sheet for Seniors — Free Printable',
   description:
     'A free, printable iPhone cheat sheet for seniors. Covers calls, texts, camera, settings, safety, gestures, and troubleshooting in large, easy-to-read text.',
   alternates: { canonical: `${SITE_URL}/tools/iphone-cheat-sheet` },
   openGraph: {
-    title: 'iPhone Cheat Sheet for Seniors — Free Printable Quick Reference',
+    title: 'iPhone Cheat Sheet for Seniors — Free Printable',
     description:
       'A free, printable iPhone cheat sheet covering calls, texts, camera, settings, safety, and more in large, easy-to-read text.',
     url: `${SITE_URL}/tools/iphone-cheat-sheet`,
     type: 'website',
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'iPhone Cheat Sheet for Seniors — Free Printable',
+    description:
+      'A free, printable iPhone cheat sheet covering calls, texts, camera, settings, safety, and more in large, easy-to-read text.',
+    site: '@TechFor60s',
   },
 }
 

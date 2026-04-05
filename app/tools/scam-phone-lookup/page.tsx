@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ScamPhoneLookup from '@/components/ScamPhoneLookup'
 
@@ -101,6 +101,10 @@ export default function ScamPhoneLookupPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd({ name: 'Scam Phone Number Lookup', description: 'A free tool that checks if a phone number has been reported as a scam by other users.', url: `${SITE_URL}/tools/scam-phone-lookup`, category: 'SecurityApplication' })) }}
       />
 
       <Breadcrumbs
