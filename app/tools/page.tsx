@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Smartphone, FileText, Wifi, MapPin, ShieldAlert, Tv, DollarSign, WifiOff, Lock, Phone, Globe, HelpCircle, Flag, Bell, Database } from 'lucide-react'
+import { Smartphone, FileText, Wifi, MapPin, ShieldAlert, Tv, DollarSign, WifiOff, Lock, Phone, Globe, HelpCircle, Flag, Bell, Database, AudioLines, HeartPulse, Stethoscope, Activity, Monitor, Settings, Calculator } from 'lucide-react'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -130,6 +130,55 @@ const TOOLS = [
     color: 'bg-slate-100 text-slate-600 dark:bg-slate-900/30',
     title: 'Data Breach Checker',
     desc: 'Search 25+ major data breaches to see if your accounts may be affected, and get step-by-step protection advice.',
+  },
+  {
+    href: '/tools/voice-scam-simulator',
+    icon: AudioLines,
+    color: 'bg-rose-100 text-rose-600 dark:bg-rose-900/30',
+    title: 'AI Voice Scam Simulator',
+    desc: 'Test your ability to spot AI voice cloning scams with realistic scenarios. Learn to protect yourself and create a family safe word.',
+  },
+  {
+    href: '/tools/parent-safety-audit',
+    icon: HeartPulse,
+    color: 'bg-pink-100 text-pink-600 dark:bg-pink-900/30',
+    title: 'Is My Parent OK? — Safety Audit',
+    desc: 'A quick assessment for adult children worried about elderly parents\' tech safety. Get a personalized safety checklist.',
+  },
+  {
+    href: '/tools/telehealth-readiness',
+    icon: Stethoscope,
+    color: 'bg-teal-100 text-teal-600 dark:bg-teal-900/30',
+    title: 'Telehealth Readiness Checker',
+    desc: 'Find out if you\'re ready for a video doctor appointment. Check your device, internet, and get setup help.',
+  },
+  {
+    href: '/tools/medical-alert-calculator',
+    icon: Activity,
+    color: 'bg-red-100 text-red-600 dark:bg-red-900/30',
+    title: 'Medical Alert System Finder',
+    desc: 'Answer a few questions about your needs and budget to find the best medical alert system for you or your parent.',
+  },
+  {
+    href: '/tools/streaming-picker',
+    icon: Monitor,
+    color: 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30',
+    title: 'Streaming Service Picker',
+    desc: 'Tell us what you watch and your budget — we\'ll recommend the perfect streaming bundle and show your savings vs cable.',
+  },
+  {
+    href: '/tools/phone-setup-wizard',
+    icon: Settings,
+    color: 'bg-blue-100 text-brand-blue dark:bg-blue-900/30',
+    title: 'Phone Setup Wizard',
+    desc: 'Get a personalized accessibility setup guide for your phone based on your device and any vision, hearing, or mobility needs.',
+  },
+  {
+    href: '/tools/tech-support-calculator',
+    icon: Calculator,
+    color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30',
+    title: 'Family Tech Support Cost Calculator',
+    desc: 'Calculate the hidden cost of helping your parents with tech. Compare DIY vs professional support services.',
   },
 ]
 

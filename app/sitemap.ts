@@ -13,6 +13,8 @@ import { getAllSupport, SUPPORT_CATEGORIES } from '@/lib/support-data'
 import { ALL_ERRORS, DEVICE_CATEGORIES } from '@/lib/errors-data'
 import { APPS, DEVICES, APP_GUIDES } from '@/lib/app-guides-data'
 import { USE_CASES, getComparisons } from '@/lib/phones-data'
+import { getAllGovServices } from '@/lib/gov-services-data'
+import { getAllTelehealthPlatforms } from '@/lib/telehealth-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticDate = '2026-04-06' // Stable date for non-blog pages; update when content changes
@@ -53,6 +55,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/latest-scams',
     '/tools/report-scam',
     '/tools/data-breach-checker',
+    '/tools/voice-scam-simulator',
+    '/tools/parent-safety-audit',
+    '/tools/telehealth-readiness',
+    '/tools/medical-alert-calculator',
+    '/tools/streaming-picker',
+    '/tools/phone-setup-wizard',
+    '/tools/tech-support-calculator',
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: staticDate,
@@ -255,6 +264,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]
 
+  // ── Government Services ────────────────────────────────────────────────
+  const govServices = getAllGovServices()
+  const govPages = [
+    { url: `${SITE_URL}/government-services`, lastModified: staticDate, changeFrequency: 'monthly' as const, priority: 0.8 },
+    ...govServices.map((s) => ({
+      url: `${SITE_URL}/government-services/${s.slug}`,
+      lastModified: staticDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
+
+  // ── Telehealth Platform Guides ──────────���────────────────────────────
+  const telehealthPlatforms = getAllTelehealthPlatforms()
+  const telehealthPages = [
+    { url: `${SITE_URL}/telehealth`, lastModified: staticDate, changeFrequency: 'monthly' as const, priority: 0.8 },
+    ...telehealthPlatforms.map((p) => ({
+      url: `${SITE_URL}/telehealth/${p.slug}`,
+      lastModified: staticDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
+
   return [
     ...corePages,
     ...toolPages,
@@ -270,6 +303,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...errorPages,
     ...appGuidePages,
     ...comparePages,
+    ...govPages,
+    ...telehealthPages,
     ...categoryEntries,
     ...postEntries,
   ]
