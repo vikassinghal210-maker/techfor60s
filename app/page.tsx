@@ -6,7 +6,7 @@ import { CATEGORIES, formatDate } from '@/lib/utils'
 import { breadcrumbJsonLd } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 import ArticleCard from '@/components/ArticleCard'
-import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin, Gift, DollarSign, HelpCircle, Phone, Search } from 'lucide-react'
+import { BookOpen, Star, Shield, Lightbulb, Smartphone, ChevronRight, CheckCircle, Clock, Heart, ArrowRight, FileText, Wifi, MapPin, Gift, DollarSign, HelpCircle, Phone, Search, Stethoscope, Landmark } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: {
@@ -315,6 +315,27 @@ export default function HomePage() {
                 title: 'App Guides',
                 desc: 'Step-by-step guides for WhatsApp, Zoom, Facebook, and more.',
               },
+              {
+                href: '/telehealth',
+                icon: Stethoscope,
+                color: 'bg-teal-100 text-teal-600 dark:bg-teal-900/30',
+                title: 'Telehealth Guides',
+                desc: 'Set up MyChart, Teladoc, and more for video doctor visits.',
+              },
+              {
+                href: '/government-services',
+                icon: Landmark,
+                color: 'bg-slate-100 text-slate-600 dark:bg-slate-900/30',
+                title: 'Government Services',
+                desc: 'Step-by-step guides for Medicare, SSA, VA, and IRS websites.',
+              },
+              {
+                href: '/how-to',
+                icon: BookOpen,
+                color: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30',
+                title: 'How-To Guides',
+                desc: '40+ common tasks explained step-by-step for every device.',
+              },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -333,6 +354,41 @@ export default function HomePage() {
                   </div>
                   <p className="text-[var(--text-secondary)] text-sm line-clamp-2">{item.desc}</p>
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Trending Guides ─── */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] text-[var(--text-primary)] mb-3">
+              Most Popular Right Now
+            </h2>
+            <p className="text-[var(--text-secondary)] max-w-lg mx-auto">
+              The guides our readers are searching for this week.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 no-underline">
+            {[
+              { href: '/how-to/change-ringtone/android-generic', title: 'Change Your Ringtone on Android', desc: 'Set a custom ringtone in under 2 minutes — easy steps.' },
+              { href: '/blog/how-to-set-up-family-sharing', title: 'Set Up Family Sharing (iPhone & Android)', desc: 'Share location, photos, and purchases with your family.' },
+              { href: '/app-guides/facetime/android-phone', title: 'FaceTime on Android — Is It Possible?', desc: 'How to join FaceTime calls from your Android phone.' },
+              { href: '/blog/best-otc-hearing-aids-2026', title: '5 Best OTC Hearing Aids in 2026', desc: 'No prescription needed — compare prices from $199.' },
+              { href: '/blog/how-to-use-chatgpt-for-seniors', title: 'How to Use ChatGPT (Beginner Guide)', desc: 'Your first AI conversation — in 5 easy minutes.' },
+              { href: '/blog/how-to-connect-to-wifi', title: 'Connect to WiFi on Any Device', desc: 'iPhone, Android, or iPad — simple steps that work.' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group card p-5 hover:border-brand-blue/30 no-underline transition-all"
+              >
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-[var(--text-secondary)] text-sm">{item.desc}</p>
               </Link>
             ))}
           </div>

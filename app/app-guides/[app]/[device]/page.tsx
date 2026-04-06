@@ -30,8 +30,8 @@ export async function generateMetadata({
   const device = getDevice(deviceSlug)
   if (!app || !device) return {}
 
-  const title = `How to Use ${app.name} on ${device.name} — Step-by-Step Guide for Seniors`
-  const description = `Learn how to download, set up, and use ${app.name} on your ${device.name}. Simple step-by-step instructions written in plain English for seniors and beginners.`
+  const title = `How to Use ${app.name} on ${device.name} [2026 Setup Guide]`
+  const description = `Download, set up, and start using ${app.name} on your ${device.name} — step by step. Written for seniors in plain English with troubleshooting tips.`
   const url = `${SITE_URL}/app-guides/${app.slug}/${device.slug}`
 
   return {

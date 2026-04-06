@@ -28,8 +28,8 @@ export async function generateMetadata({
   const device = getDevice(deviceSlug)
   if (!task || !device) return {}
 
-  const title = `How to ${task.name} on ${device.name} — Step by Step`
-  const description = `Simple step-by-step instructions to ${task.name.toLowerCase()} on your ${device.name}. Written in plain English for seniors and beginners.`
+  const title = `How to ${task.name} on ${device.name} [Easy Steps for Seniors]`
+  const description = `${task.name} on your ${device.name} in ${task.estimatedTime ?? '3 min'}. Plain-English steps with pictures — no tech jargon. Works in 2026.`
   const url = `${SITE_URL}/how-to/${task.slug}/${device.slug}`
 
   return {

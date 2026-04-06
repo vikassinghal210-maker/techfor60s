@@ -29,8 +29,8 @@ export async function generateMetadata({
   const device = getAccessDevice(deviceSlug)
   if (!condition || !device) return {}
 
-  const title = `${condition.name} Settings on ${device.name} — Accessibility Guide for Seniors`
-  const description = `Step-by-step guide to set up ${condition.name.toLowerCase()} accessibility settings on your ${device.name}. Make your ${device.name} easier to use with ${condition.name.toLowerCase()}.`
+  const title = `${condition.name} Settings on ${device.name} — Make It Easier to Use [Guide]`
+  const description = `Turn on ${condition.name.toLowerCase()} accessibility settings on your ${device.name} in under 5 minutes. Step-by-step guide with screenshots — designed for seniors.`
   const url = `${SITE_URL}/accessibility/${condition.slug}/${device.slug}`
 
   return {
