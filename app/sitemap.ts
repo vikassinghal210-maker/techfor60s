@@ -15,8 +15,7 @@ import { APPS, DEVICES, APP_GUIDES } from '@/lib/app-guides-data'
 import { USE_CASES, getComparisons } from '@/lib/phones-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
-  const staticDate = '2026-04-01' // Stable date for non-blog pages; update when content changes
+  const staticDate = '2026-04-06' // Stable date for non-blog pages; update when content changes
   const posts = getAllPostsMeta()
 
   const postEntries = posts
@@ -62,8 +61,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   const corePages = [
-    { url: SITE_URL, lastModified: now, changeFrequency: 'daily' as const, priority: 1.0 },
-    { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: SITE_URL, lastModified: staticDate, changeFrequency: 'daily' as const, priority: 1.0 },
+    { url: `${SITE_URL}/blog`, lastModified: staticDate, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${SITE_URL}/about`, lastModified: staticDate, changeFrequency: 'monthly' as const, priority: 0.5 },
     { url: `${SITE_URL}/contact`, lastModified: staticDate, changeFrequency: 'monthly' as const, priority: 0.4 },
   ]
