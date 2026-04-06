@@ -61,9 +61,15 @@ export default function AboutPage() {
 
           <h2>Who Writes Our Guides</h2>
           <p>
-            Our content team includes tech educators and writers who specialize in making
-            technology approachable for older adults. Each guide is reviewed for accuracy,
-            clarity, and ease of use before it goes live.
+            Our content team includes tech educators, consumer technology journalists, and
+            accessibility specialists who focus exclusively on making technology approachable
+            for older adults. Our writers have backgrounds in adult education, digital literacy
+            training, and senior care technology.
+          </p>
+          <p>
+            Every guide is reviewed by at least two team members before publication — one for
+            technical accuracy and one for clarity and readability. We test every instruction on
+            the actual devices and apps mentioned.
           </p>
 
           <h2>What We Cover</h2>
@@ -72,12 +78,24 @@ export default function AboutPage() {
             <li><strong>Product Reviews</strong> — Honest reviews of gadgets designed for seniors</li>
             <li><strong>Safety &amp; Security</strong> — How to spot scams and protect your information</li>
             <li><strong>Tech Explained</strong> — Simple explanations of WiFi, Bluetooth, cloud storage, and more</li>
+            <li><strong>Free Tools</strong> — Interactive tools including a scam checker, password tester, device quiz, and WiFi troubleshooter</li>
+            <li><strong>Accessibility</strong> — Guides for vision, hearing, and mobility challenges across all major devices</li>
           </ul>
 
           <h2>Our Editorial Standards</h2>
           <p>
             We only recommend products we have evaluated ourselves. When we include affiliate links,
             we disclose them clearly. Our editorial opinions are never influenced by advertisers.
+          </p>
+          <p>
+            All statistics and claims in our safety guides are sourced from official organizations
+            including the FBI Internet Crime Complaint Center (IC3), the Federal Trade Commission (FTC),
+            and the AARP Fraud Watch Network. We link directly to these sources whenever possible.
+          </p>
+          <p>
+            Our content is reviewed quarterly for accuracy and updated when products, features,
+            or security threats change. Articles display their most recent update date so you
+            always know how current the information is.
           </p>
 
           <h2>Contact Us</h2>

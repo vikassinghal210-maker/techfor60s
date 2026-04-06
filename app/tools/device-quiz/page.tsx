@@ -140,7 +140,7 @@ export default function DeviceQuizPage() {
             Not sure whether to get a phone or tablet? iPhone or Android? Take our free
             2-minute quiz and get a personalized recommendation.
           </p>
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="text-base text-[var(--text-muted)]">
             No sign-up required. Your answers are not stored or shared.
           </p>
         </div>
