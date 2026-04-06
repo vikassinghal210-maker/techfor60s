@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
-import { organizationJsonLd, breadcrumbJsonLd } from '@/lib/seo'
+import { organizationJsonLd, breadcrumbJsonLd, aboutPageJsonLd } from '@/lib/seo'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 export const metadata: Metadata = {
@@ -33,6 +33,10 @@ export default function AboutPage() {
             ])
           ),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageJsonLd()) }}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />

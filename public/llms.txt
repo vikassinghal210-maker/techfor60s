@@ -36,7 +36,14 @@ All guides are written in plain English, tested before publication, and reviewed
 
 ## Licensing
 Content is available for AI citation with attribution to TechFor60s (https://techfor60s.com).
+License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+
+## Sitemap
+https://techfor60s.com/sitemap.xml
 
 ## Contact
 - Website: https://techfor60s.com/contact
 - About: https://techfor60s.com/about
+
+---
+Updated: 2026-04-06

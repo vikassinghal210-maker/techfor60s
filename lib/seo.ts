@@ -135,10 +135,10 @@ export function articleJsonLd(post: PostMeta, slug: string, wordCount?: number) 
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
     author: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: SITE_NAME,
+      '@type': 'Person',
+      name: 'TechFor60s Editorial Team',
       url: `${SITE_URL}/about`,
+      jobTitle: 'Senior Technology Educators',
     },
     publisher: {
       '@id': `${SITE_URL}/#organization`,
@@ -246,6 +246,20 @@ export function organizationJsonLd() {
   }
 }
 
+export function aboutPageJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${SITE_URL}/about#webpage`,
+    url: `${SITE_URL}/about`,
+    name: `About ${SITE_NAME}`,
+    description: `${SITE_NAME} helps adults over 60 learn technology with simple, jargon-free guides.`,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` },
+    inLanguage: 'en-US',
+  }
+}
+
 export function webApplicationJsonLd(params: {
   name: string
   description: string
@@ -266,6 +280,10 @@ export function webApplicationJsonLd(params: {
       priceCurrency: 'USD',
     },
     publisher: { '@id': `${SITE_URL}/#organization` },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Seniors over 60',
+    },
   }
 }
 
