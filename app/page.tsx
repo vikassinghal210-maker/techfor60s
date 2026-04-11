@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description:
       'Free, jargon-free tech guides for adults over 60. 150+ guides, 18 interactive tools, and printable cheat sheets.',
     url: SITE_URL,
-    images: [{ url: `${SITE_URL}/api/og?title=Technology+Made+Simple+for+Seniors`, width: 1200, height: 630, alt: 'TechFor60s — Technology Made Simple' }],
+    images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630, alt: 'TechFor60s — Technology Made Simple' }],
   },
 }
 

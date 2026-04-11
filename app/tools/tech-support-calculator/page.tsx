@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent('Family Tech Support Cost Calculator')}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Family Tech Support Cost Calculator',

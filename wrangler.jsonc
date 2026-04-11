@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "techfor60s",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    { "pattern": "techfor60s.com", "zone_name": "techfor60s.com", "custom_domain": true },
+    { "pattern": "www.techfor60s.com", "zone_name": "techfor60s.com", "custom_domain": true }
+  ]
+}

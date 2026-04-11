@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent('Data Breach Checker — Were You Affected?')}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Data Breach Checker Tool for Seniors',

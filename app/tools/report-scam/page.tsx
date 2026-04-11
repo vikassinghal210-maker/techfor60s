@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent('Report a Scam — Step-by-Step Wizard')}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Report a Scam Wizard for Seniors',

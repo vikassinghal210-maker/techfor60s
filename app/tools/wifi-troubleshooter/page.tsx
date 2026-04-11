@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Answer a few simple questions and fix your WiFi connection. No tech knowledge needed.',
     siteName: SITE_NAME,
     images: [{
-      url: `${SITE_URL}/api/og?title=${encodeURIComponent('WiFi Troubleshooter')}`,
+      url: `${SITE_URL}/og-image.jpg`,
       width: 1200, height: 630, alt: 'WiFi Troubleshooter',
     }],
   },

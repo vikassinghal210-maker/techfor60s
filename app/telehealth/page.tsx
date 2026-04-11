@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: 'Telehealth Platform Guides — Video Doctor Visits Made Simple',
     description: 'Step-by-step guides for video doctor visits. MyChart, Teladoc, Kaiser, and more.',
     siteName: SITE_NAME,
-    images: [{ url: `${SITE_URL}/api/og?title=${encodeURIComponent('Telehealth Setup Guides for Seniors')}`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
   },
   alternates: { canonical: PAGE_URL },
 }

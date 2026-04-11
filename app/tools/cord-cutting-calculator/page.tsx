@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Find out how much you could save by switching from cable to streaming. Free calculator designed for seniors.',
     siteName: SITE_NAME,
     images: [{
-      url: `${SITE_URL}/api/og?title=${encodeURIComponent('Cord-Cutting Savings Calculator')}`,
+      url: `${SITE_URL}/og-image.jpg`,
       width: 1200, height: 630, alt: 'Cord-Cutting Calculator',
     }],
   },

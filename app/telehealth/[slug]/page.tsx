@@ -38,7 +38,7 @@ export async function generateMetadata(
     ],
     openGraph: {
       type: 'website', url, title, description, siteName: SITE_NAME,
-      images: [{ url: `${SITE_URL}/api/og?title=${encodeURIComponent(`How to Use ${platform.shortName}`)}`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image', title, description },
     alternates: { canonical: url },

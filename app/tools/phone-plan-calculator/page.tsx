@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Compare your phone bill against senior plans and find out how much you could save.',
     siteName: SITE_NAME,
     images: [{
-      url: `${SITE_URL}/api/og?title=${encodeURIComponent('Phone Plan Savings Calculator')}`,
+      url: `${SITE_URL}/og-image.jpg`,
       width: 1200, height: 630, alt: 'Phone Plan Calculator',
     }],
   },

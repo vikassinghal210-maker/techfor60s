@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent('Is My Parent OK? — Safety Audit')}`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Parent Safety Audit Tool',

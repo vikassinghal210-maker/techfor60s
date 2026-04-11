@@ -64,7 +64,7 @@ export async function generateMetadata({
       description: occasion.description,
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`,
+          url: `${SITE_URL}/og-image.jpg`,
           width: 1200,
           height: 630,
           alt: title,

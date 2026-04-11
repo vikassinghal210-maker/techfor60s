@@ -41,3 +41,13 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# cloudflare workers / opennext
+.open-next/
+.wrangler/
+
+# local screenshots / scratch html
+screenshots/
+*.local.html
+blog.html
+homepage.html
