@@ -62,6 +62,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/streaming-picker',
     '/tools/phone-setup-wizard',
     '/tools/tech-support-calculator',
+    '/scam-message-checker',
+    '/password-checker',
+    '/social-security-claiming-age-calculator',
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: staticDate,
