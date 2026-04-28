@@ -121,9 +121,19 @@ export function articleJsonLd(post: PostMeta, slug: string, wordCount?: number) 
     ? post.thumbnail
     : `${SITE_URL}${post.thumbnail}`
 
+  const authorName = post.author?.trim() || 'TechFor60s Editorial Team'
+  const authorSlug = slugify(authorName)
+  const author: Record<string, unknown> = {
+    '@type': 'Person',
+    name: authorName,
+    url: `${SITE_URL}/author/${authorSlug}`,
+  }
+  if (post.authorBio) author.description = post.authorBio
+  if (post.authorAvatar) author.image = post.authorAvatar
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     image: {
@@ -134,12 +144,7 @@ export function articleJsonLd(post: PostMeta, slug: string, wordCount?: number) 
     },
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
-    author: {
-      '@type': 'Person',
-      name: 'TechFor60s Editorial Team',
-      url: `${SITE_URL}/about`,
-      jobTitle: 'Senior Technology Educators',
-    },
+    author,
     publisher: {
       '@id': `${SITE_URL}/#organization`,
     },

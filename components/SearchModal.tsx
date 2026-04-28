@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Search, X } from 'lucide-react'
 import Link from 'next/link'
 import Fuse from 'fuse.js'
@@ -16,7 +16,6 @@ interface SearchModalProps {
 
 export default function SearchModal({ searchData, isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<SearchResult[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const fuseRef = useRef<Fuse<SearchResult> | null>(null)
@@ -37,23 +36,21 @@ export default function SearchModal({ searchData, isOpen, onClose }: SearchModal
     if (isOpen) {
       inputRef.current?.focus()
       setQuery('')
-      setResults([])
       setSelectedIndex(0)
     }
   }, [isOpen])
 
-  useEffect(() => {
-    if (!query.trim()) {
-      setResults(searchData.slice(0, 6))
-      return
-    }
-    if (fuseRef.current) {
-      const found = fuseRef.current.search(query).slice(0, 8)
-      setResults(found.map(r => r.item))
-      if (query.trim().length >= 3) trackSearch('site-search', query)
-    }
-    setSelectedIndex(0)
+  const results = useMemo<SearchResult[]>(() => {
+    if (!query.trim()) return searchData.slice(0, 6)
+    if (!fuseRef.current) return []
+    const found = fuseRef.current.search(query).slice(0, 8)
+    return found.map(r => r.item)
   }, [query, searchData])
+
+  useEffect(() => {
+    if (query.trim().length >= 3) trackSearch('site-search', query)
+    setSelectedIndex(0)
+  }, [query])
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
