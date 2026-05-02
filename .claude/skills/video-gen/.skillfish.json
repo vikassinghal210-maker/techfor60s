@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "video-gen",
+  "owner": "infquest",
+  "repo": "vibe-ops-plugin",
+  "path": "skills/video-gen",
+  "branch": "main",
+  "sha": "36e89d226c81f7b91d3153dc961dbf0b8848c315",
+  "source": "manual"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "keyword-research",
+  "owner": "majesticlabs-dev",
+  "repo": "majestic-marketplace",
+  "path": "plugins/majestic-marketing/skills/keyword-research",
+  "branch": "master",
+  "sha": "16150cd3b90cedfc3df50b75b040f7e110a72c01",
+  "source": "manual"
+}
