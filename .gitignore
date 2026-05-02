@@ -51,3 +51,8 @@ screenshots/
 *.local.html
 blog.html
 homepage.html
+tool.html
+
+# audit / scratch artifacts
+sitemap_audit.xml
+*_audit.xml
